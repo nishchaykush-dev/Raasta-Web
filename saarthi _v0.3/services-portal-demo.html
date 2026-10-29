@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Services | Demo National Portal</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--bg:#f4f6fb;--surface:#fff;--text:#1b2433;--muted:#5b667a;--primary:#1a4fa3;--primary-d:#123a7a;--accent:#ff9933;--green:#138808;--border:#d9dfeb;--hero:#e8effb;color-scheme:light}
+html{scroll-padding-top:env(safe-area-inset-top,0px);font-size:16px}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#10151f;--surface:#192131;--text:#e8edf6;--muted:#a0aabd;--primary:#6b9bf0;--primary-d:#4a7fe0;--border:#2c374c;--hero:#1b2a47;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#10151f;--surface:#192131;--text:#e8edf6;--muted:#a0aabd;--primary:#6b9bf0;--primary-d:#4a7fe0;--border:#2c374c;--hero:#1b2a47;color-scheme:dark}
+:root.hc{--bg:#000;--surface:#000;--text:#ffeb3b;--muted:#fff;--primary:#00e5ff;--primary-d:#00e5ff;--border:#ffeb3b;--hero:#000}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:"Noto Sans","Segoe UI",system-ui,Arial,sans-serif;line-height:1.55}
+a{color:var(--primary)}button{font:inherit;cursor:pointer}
+.wrap{max-width:1140px;margin:0 auto;padding:0 16px}
+.top{background:var(--primary-d);color:#fff;font-size:.82rem}
+:root.hc .top{background:#000;border-bottom:1px solid #ffeb3b}
+.top .wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;padding-top:6px;padding-bottom:6px}
+.top a,.top button{color:#fff;background:none;border:1px solid rgba(255,255,255,.4);border-radius:4px;padding:2px 8px;text-decoration:none;margin-left:4px}
+.tri{height:4px;background:linear-gradient(90deg,#ff9933 33%,#fff 33% 66%,#138808 66%)}
+header.main{background:var(--surface);border-bottom:1px solid var(--border)}
+header.main .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:12px;padding-bottom:12px}
+.logo{display:flex;align-items:center;gap:10px;cursor:pointer;background:none;border:0;color:var(--text);text-align:left}
+.logo b{display:block;font-size:1.15rem;color:var(--primary)}.logo small{color:var(--muted)}
+.logo .em{width:42px;height:42px;border-radius:50%;background:var(--primary);color:#fff;display:grid;place-items:center;font-weight:700}
+.sform{display:flex;flex:1;max-width:560px;min-width:260px}
+.sform select,.sform input{border:1px solid var(--border);background:var(--surface);color:var(--text);padding:9px 10px;font:inherit;min-width:0}
+.sform select{border-radius:6px 0 0 6px;max-width:150px}.sform input{flex:1;border-left:0}
+.sform button{background:var(--primary);color:#fff;border:0;padding:0 16px;border-radius:0 6px 6px 0}
+nav.tabs{background:var(--primary);}
+nav.tabs{position:relative;z-index:20}nav.tabs .wrap{display:flex;gap:2px;flex-wrap:wrap}
+nav.tabs>.wrap>button,.dd>button{background:none;border:0;color:#fff;padding:11px 14px;font-size:.93rem;white-space:nowrap;border-bottom:3px solid transparent}
+nav.tabs button.on,.dd:hover>button{border-color:var(--accent);background:rgba(255,255,255,.12)}
+:root.hc nav.tabs{background:#000;border-bottom:1px solid #ffeb3b}
+.hero{background:var(--hero);padding:34px 0;border-bottom:1px solid var(--border)}
+.hero h1{margin:0 0 8px;font-size:2rem}.hero p{margin:0;color:var(--muted);max-width:820px}
+section.blk{padding:28px 0}
+h2{font-size:1.35rem;margin:0 0 16px;display:flex;justify-content:space-between;align-items:center;gap:8px}
+h2:after{content:none}
+.link{background:none;border:0;color:var(--primary);font-size:.95rem;text-decoration:underline}
+.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(230px,1fr))}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px;text-align:left;color:var(--text);transition:.15s}
+button.card:hover,.card.hov:hover{border-color:var(--primary);box-shadow:0 4px 14px rgba(26,79,163,.15);transform:translateY(-2px)}
+.card .ic{font-size:1.8rem}.card h3{margin:6px 0 4px;font-size:1.02rem}.card p{margin:0;color:var(--muted);font-size:.88rem}
+.imp{border-left:5px solid var(--accent)}
+.pill{display:inline-block;font-size:.75rem;background:var(--hero);color:var(--primary);border-radius:20px;padding:2px 10px;margin-top:8px}
+.tabrow{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap}
+.tabrow button{border:1px solid var(--border);background:var(--surface);color:var(--text);border-radius:20px;padding:6px 16px}
+.tabrow button.on{background:var(--primary);color:#fff;border-color:var(--primary)}
+:root.hc .tabrow button.on{color:#000}
+.list{display:grid;gap:10px}
+.row{display:flex;align-items:center;gap:12px;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px 14px;text-align:left;color:var(--text);width:100%}
+.row:hover{border-color:var(--primary)}.row .t{flex:1}.row .t b{display:block}.row .t span{font-size:.85rem;color:var(--muted)}
+.cta{background:var(--primary-d);color:#fff;text-align:center;padding:36px 16px}
+.cta h2{justify-content:center;margin:0 0 6px;font-size:1.6rem}.cta p{margin:0;opacity:.9}
+.cta .big{color:var(--accent)}
+:root.hc .cta{background:#000;border-block:1px solid #ffeb3b}
+.two{display:grid;gap:20px;grid-template-columns:1fr 1fr}
+@media(max-width:720px){.two{grid-template-columns:1fr}.hero h1{font-size:1.6rem}}
+.btn{background:var(--primary);color:#fff;border:0;border-radius:6px;padding:10px 20px}
+.btn.alt{background:var(--surface);color:var(--primary);border:1px solid var(--primary)}
+:root.hc .btn{color:#000}
+.faq details{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:10px 14px;margin-bottom:8px}
+.faq summary{cursor:pointer;font-weight:600}.faq p{color:var(--muted);margin:8px 0 0}
+footer{background:var(--surface);border-top:1px solid var(--border);padding:24px 0;font-size:.88rem;color:var(--muted)}
+.crumb{font-size:.88rem;color:var(--muted);margin:18px 0 8px}.crumb button{background:none;border:0;color:var(--primary);padding:0;text-decoration:underline}
+.panel{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:22px;margin-bottom:24px}
+.panel h1{margin:0 0 4px;font-size:1.6rem}.panel ul,.panel ol{padding-left:22px}
+label{display:block;font-weight:600;margin:12px 0 4px;font-size:.9rem}
+.panel input,.panel select,.panel textarea{width:100%;padding:9px 10px;border:1px solid var(--border);border-radius:6px;background:var(--bg);color:var(--text);font:inherit}
+.ok{border:2px solid var(--green);border-radius:10px;padding:18px;background:var(--bg)}
+.ok h3{color:var(--green);margin:0 0 6px}
+.empty{color:var(--muted);padding:20px;text-align:center}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+body.bigc,body.bigc *{cursor:crosshair}
+body.noimg .ic{display:none}
+
+.dd{position:relative}
+.menu{display:none;position:absolute;top:100%;left:0;min-width:250px;background:var(--surface);border:1px solid var(--border);border-top:3px solid var(--accent);border-radius:0 0 8px 8px;box-shadow:0 10px 24px rgba(0,0,0,.22);padding:6px}
+.dd:nth-last-child(-n+3) .menu{left:auto;right:0}
+.dd:hover .menu,.dd.open .menu,.dd:focus-within .menu{display:block}
+nav.tabs .menu button{display:block;width:100%;text-align:left;color:var(--text);background:none;border:0;border-radius:5px;padding:9px 12px;border-bottom:0;font-size:.92rem;white-space:normal}
+nav.tabs .menu button:hover{background:var(--hero);color:var(--primary)}
+nav.tabs .menu button.all{color:var(--primary);font-weight:600;border-top:1px solid var(--border);border-radius:0;margin-top:4px}
+.banner{background:linear-gradient(135deg,var(--primary-d),var(--primary));color:#fff;padding:54px 0}
+.banner h1{margin:0 0 10px;font-size:2.2rem}.banner p{margin:0;max-width:760px;opacity:.95;font-size:1.05rem}
+.banner .hint{margin-top:18px;display:inline-block;background:rgba(255,255,255,.16);border-radius:20px;padding:6px 16px;font-size:.9rem}
+:root.hc .banner{background:#000;border-bottom:1px solid #ffeb3b}
+.news{display:grid;gap:10px}
+.news div{display:flex;gap:14px;background:var(--surface);border:1px solid var(--border);border-left:5px solid var(--accent);border-radius:8px;padding:12px 14px}
+.news time{min-width:92px;color:var(--primary);font-weight:600;font-size:.88rem}
+.facts{display:grid;gap:10px;grid-template-columns:repeat(auto-fill,minmax(190px,1fr))}
+.facts div{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px;text-align:center}
+.facts b{display:block;font-size:1.25rem;color:var(--primary)}.facts span{font-size:.85rem;color:var(--muted)}
+.hl{display:flex;justify-content:space-between;align-items:center;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:10px 14px}
+.hl b{font-size:1.2rem;color:var(--primary)}
+@media(max-width:720px){.banner h1{font-size:1.6rem}}
+.spin{display:inline-block;font-size:72px;line-height:1;color:var(--primary);animation:rot 1s linear infinite}
+@keyframes rot{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+<div class="top"><div class="wrap">
+<div>Demo Portal · Not an official government website</div>
+<div>
+<button id="tinc" title="Increase text">A+</button><button id="treset" title="Reset text">A</button><button id="tdec" title="Decrease text">A−</button>
+<button id="hc">Contrast</button><button id="img">Hide icons</button><button id="cur">Big cursor</button>
+<button id="saarthi-switch" data-saarthi-ignore type="button"></button>
+<a href="#help" onclick="alert('Demo only: this link would open the CPGRAMS grievance portal.');return false">CPGRAMS</a>
+<a href="#cal" onclick="alert('Demo only: this link would open the national calendar.');return false">Calendar</a>
+</div></div></div>
+<div class="tri"></div>
+<header class="main"><div class="wrap">
+<button class="logo" id="home"><span class="em">DP</span><span><b>demo.portal.in</b><small>National Portal · Demo</small></span></button>
+<form class="sform" id="sf" role="search"><select id="scat" aria-label="Area / Topics"></select><input id="sq" placeholder="Search services, schemes, documents…" aria-label="Search"><button type="submit">Search</button></form>
+</div></header>
+<nav class="tabs"><div class="wrap" id="nav"></div></nav>
+<main id="app"></main>
+<footer><div class="wrap">
+<p>This is a demo website built for practice. Content is illustrative and not owned by or affiliated with any government body.</p>
+<p>Last reviewed and updated on 26 October 2026</p>
+</div></footer>
+
+<script>
+const C=[
+{id:'identity',n:'Identity & Documents',i:'🪪',s:[
+['aadhaar-update','Update Aadhaar Details','Unique Identification Authority','Update name, address, mobile number or biometrics linked to your Aadhaar.','Any Aadhaar holder.',['Aadhaar number','Proof of change (address or name)','Linked mobile number']],
+['pan-apply','Apply for PAN Card','Income Tax Department','Apply for a new Permanent Account Number or request corrections.','Indian citizens and entities earning taxable income.',['Proof of identity','Proof of address','Passport size photograph']],
+['passport','Passport Application','Ministry of External Affairs','Apply for a fresh passport or renew an existing one.','Indian citizens of any age.',['Aadhaar or birth proof','Address proof','Old passport (for renewal)']],
+['voter-id','Voter ID Registration','Election Commission of India','Register as a voter or correct details on your voter card.','Citizens aged 18 or above.',['Age proof','Address proof','Photograph']]]},
+{id:'education',n:'Education',i:'🎓',s:[
+['scholarship','National Scholarship Application','Ministry of Education','Apply for central scholarships for school and college students.','Students with family income under the limit set per scheme.',['Income certificate','Marksheet','Bank passbook','Aadhaar']],
+['digilocker','DigiLocker Academic Documents','Ministry of Electronics & IT','Access marksheets and certificates stored digitally.','Any person with a mobile number linked to Aadhaar.',['Aadhaar-linked mobile number']],
+['skill-india','Skill India Course Enrolment','Ministry of Skill Development','Enrol in short-term skill training courses.','Indian residents aged 15 to 45.',['Aadhaar','Education certificate']]]},
+{id:'health',n:'Health',i:'🏥',s:[
+['ayushman','Ayushman Bharat Card','National Health Authority','Get a health card for cashless treatment at empanelled hospitals.','Families listed in the eligible beneficiary database.',['Aadhaar','Ration card','Mobile number']],
+['abha','Create ABHA Health ID','National Health Authority','Create a digital health account to store and share health records.','Any Indian resident.',['Aadhaar or mobile number']],
+['covid-cert','Download Vaccination Certificate','Ministry of Health','Download your vaccination certificate using your registered number.','Vaccinated individuals.',['Registered mobile number','Reference ID']]]},
+{id:'agriculture',n:'Agriculture',i:'🌾',s:[
+['pm-kisan','PM-KISAN Registration','Ministry of Agriculture','Register for direct income support to farmer families.','Landholding farmer families, subject to exclusions.',['Aadhaar','Land records','Bank account details']],
+['soil-health','Soil Health Card','Department of Agriculture','Request a soil test report with crop-wise recommendations.','All farmers.',['Land details','Aadhaar']],
+['kcc','Kisan Credit Card','NABARD','Apply for short-term crop loans at concessional interest.','Farmers, tenant farmers and sharecroppers.',['Land records','Identity proof','Photograph']]]},
+{id:'business',n:'Business & Tax',i:'💼',s:[
+['gst-reg','GST Registration','GST Council','Register your business for Goods and Services Tax.','Businesses above the turnover threshold.',['PAN','Business address proof','Bank details']],
+['udyam','Udyam (MSME) Registration','Ministry of MSME','Register your micro, small or medium enterprise.','Any enterprise within MSME limits.',['Aadhaar of owner','PAN','Business details']],
+['itr','File Income Tax Return','Income Tax Department','File your annual income tax return online.','Taxpayers with PAN.',['PAN','Form 16','Bank statements']]]},
+{id:'transport',n:'Transport',i:'🚗',s:[
+['dl','Driving Licence','Ministry of Road Transport','Apply for a learner or permanent driving licence.','Persons aged 18 or above (16 for gearless two-wheelers).',['Age proof','Address proof','Medical certificate']],
+['rc','Vehicle Registration Certificate','Ministry of Road Transport','Register a new vehicle or transfer ownership.','Vehicle owners.',['Invoice','Insurance','ID proof']],
+['fastag','FASTag Recharge','NHAI','Recharge your FASTag for toll payments.','FASTag holders.',['Vehicle number','Tag ID']]]},
+{id:'welfare',n:'Social Welfare',i:'🤝',s:[
+['pension','Old Age Pension Scheme','Ministry of Rural Development','Monthly pension support for senior citizens.','Citizens aged 60 or above below the poverty line.',['Age proof','BPL card','Bank account']],
+['ration','Ration Card Application','Dept. of Food & Public Distribution','Apply for a new ration card or add family members.','Resident families.',['Family ID proofs','Address proof']],
+['caste','Caste Certificate','State Revenue Department','Apply for a caste or community certificate.','Residents belonging to notified communities.',['Identity proof','Parent certificate','Address proof']]]},
+{id:'utilities',n:'Public Utilities',i:'💡',s:[
+['electricity','Pay Electricity Bill','State Electricity Boards','Pay your electricity bill online.','Registered consumers.',['Consumer number']],
+['lpg','Book LPG Cylinder','Oil Marketing Companies','Book a refill or apply for a new connection.','Registered households.',['LPG ID','Mobile number']],
+['water','Water Connection Request','Municipal Corporation','Apply for a new water supply connection.','Property owners and tenants.',['Property papers','ID proof']]]}
+];
+const FAQ=[['How do I find a service?','Hover over any category tab in the main menu, pick a service from the dropdown, and its details page opens. You can also use the search bar.'],['Is this an official website?','No. This is a demo built to mimic the layout and behaviour of a government services portal.'],['Do I need to log in?','Not in this demo. Submitting an application only shows a sample reference number.'],['How can I suggest a service?','Use the “Notify Us” button in the Suggest / Report a Service section.']];
+const all=[];C.forEach(c=>c.s.forEach(s=>all.push({id:s[0],n:s[1],d:s[2],ds:s[3],e:s[4],docs:s[5],cat:c})));
+const byId=id=>all.find(s=>s.id===id);
+const $=s=>document.querySelector(s), app=$('#app');
+const esc=t=>String(t).replace(/[&<>"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));
+/* Saarthi: tells "Where am I?" which screen is showing */
+const scr=n=>app.setAttribute('data-saarthi-screen',n);
+
+function svcRow(s){return `<button class="row" data-s="${s.id}"><span class="ic" style="font-size:1.5rem">${s.cat.i}</span><span class="t"><b>${esc(s.n)}</b><span>${esc(s.d)}</span></span><span aria-hidden="true">›</span></button>`}
+function nav(active){
+  $('#nav').innerHTML=`<button class="${active==='home'?'on':''}" data-nav="home">Home</button>`+C.map(c=>`<div class="dd"><button class="${active==='c-'+c.id?'on':''}" data-tg="1" aria-haspopup="true">${c.n} ▾</button><div class="menu">${c.s.map(x=>`<button data-s="${x[0]}">${esc(x[1])}</button>`).join('')}<button class="all" data-c="${c.id}">View all in ${c.n} →</button></div></div>`).join('');
+}
+function go(h){location.hash=h==='home'?'':h;}
+
+function home(){
+  nav('home');scr('Home');
+  const news=[['25 Oct 2026','Portal content reviewed and updated across participating ministries (sample).'],['22 Oct 2026','Citizens encouraged to keep mobile numbers updated on their official records (sample).'],['18 Oct 2026','New accessibility options added: text size, contrast and cursor controls (sample).'],['10 Oct 2026','Awareness drive on safe online practices and cyber hygiene begins (sample).']];
+  const facts=[['New Delhi','Capital'],['28 + 8','States & Union Territories'],['15 August','Independence Day'],['26 January','Republic Day'],['Indian Rupee (₹)','Currency']];
+  const hl=[['112','Emergency Response'],['108','Ambulance'],['181','Women Helpline'],['1098','Child Helpline'],['14567','Senior Citizen Helpline'],['1930','Cyber Crime Reporting']];
+  app.innerHTML=`
+  <div class="banner"><div class="wrap"><h1>Where Government Information Converges</h1><p>The Demo National Portal provides single-window access to information and services offered by the government at all levels, organised for citizens, businesses and visitors.</p></div></div>
+  <section class="blk"><div class="wrap"><h2>About the Portal</h2><div class="grid">
+   <div class="card"><div class="ic">🏛️</div><h3>Single window</h3><p>Information from many ministries and departments brought together in one place.</p></div>
+   <div class="card"><div class="ic">♿</div><h3>Accessible</h3><p>Adjustable text size, high contrast and screen-reader friendly structure.</p></div>
+   <div class="card"><div class="ic">🌐</div><h3>Multilingual</h3><p>Designed to serve citizens in the languages of India.</p></div>
+   <div class="card"><div class="ic">📱</div><h3>Digital India</h3><p>Built under the vision of easy, paperless and citizen-centric governance.</p></div></div></div></section>
+  <section class="blk" style="padding-top:0"><div class="wrap two"><div><h2>News &amp; Announcements</h2><div class="news">${news.map(n=>`<div><time>${n[0]}</time><span>${n[1]}</span></div>`).join('')}</div></div>
+   <div><h2>Important Helplines</h2><div class="list">${hl.map(h=>`<div class="hl"><span>${h[1]}</span><b>${h[0]}</b></div>`).join('')}</div></div></div></section>
+  <section class="blk" style="padding-top:0"><div class="wrap"><h2>Know India</h2><div class="facts">${facts.map(f=>`<div><b>${f[0]}</b><span>${f[1]}</span></div>`).join('')}</div></div></section>
+  <div class="cta"><h2>Citizen Engagement</h2><p>Share ideas, raise grievances and take part in governance through official channels.</p></div>
+  <section class="blk"><div class="wrap two"><div class="panel" id="sug"><h2 style="margin-bottom:8px">Feedback</h2><p>Help us improve!</p><ul><li>Suggest a topic or service that is not listed on this portal.</li><li>Report incorrect details on any page.</li></ul><button class="btn" id="notify">Notify Us</button></div>
+  <div class="faq"><h2>FAQs</h2>${FAQ.map(f=>`<details><summary>${f[0]}</summary><p>${f[1]}</p></details>`).join('')}</div></div></section>`;
+}
+function category(id){
+  const c=C.find(x=>x.id===id); if(!c)return home(); nav('c-'+id);scr(c.n);
+  app.innerHTML=`<div class="wrap"><div class="crumb"><button data-nav="home">Home</button> › ${c.n}</div>
+  <div class="panel"><h1>${c.i} ${c.n}</h1><p style="color:var(--muted)">Select a service to see details and apply.</p><div class="list">${c.s.map(s=>svcRow(byId(s[0]))).join('')}</div></div>
+  <div class="tabrow">${C.filter(x=>x.id!==id).map(x=>`<button data-c="${x.id}">${x.i} ${x.n}</button>`).join('')}</div></div>`;
+}
+let dtab='o';
+function service(id){
+  const s=byId(id); if(!s)return home(); nav('c-'+s.cat.id);
+  const T={o:`<p>${esc(s.ds)}</p><p><b>Provided by:</b> ${esc(s.d)}</p><p><b>Mode:</b> Online / Offline</p><p><b>Processing time:</b> 7 to 15 working days (indicative)</p>`,
+   e:`<p>${esc(s.e)}</p><p style="color:var(--muted)">Final eligibility is decided by the concerned department.</p>`,
+   d:`<ul>${s.docs.map(d=>`<li>${esc(d)}</li>`).join('')}</ul>`,
+   h:`<ol><li>Visit the official service page and sign in or register.</li><li>Fill in the application form.</li><li>Upload the required documents.</li><li>Review and submit; note your reference number.</li><li>Track the status using the reference number.</li></ol>`};
+  const names={o:'Overview',e:'Eligibility',d:'Documents Required',h:'How to Apply'};scr(s.n+' – '+names[dtab]);
+  app.innerHTML=`<div class="wrap"><div class="crumb"><button data-nav="home">Home</button> › <button data-c="${s.cat.id}">${s.cat.n}</button> › ${esc(s.n)}</div>
+  <div class="panel"><h1>${esc(s.n)}</h1><span class="pill">${esc(s.d)}</span>
+  <div class="tabrow" style="margin-top:16px">${Object.keys(names).map(k=>`<button class="${dtab===k?'on':''}" data-dt="${k}">${names[k]}</button>`).join('')}</div>
+  <div id="dc">${T[dtab]}</div><p style="margin-top:20px"><button class="btn" id="apply">Apply Now</button> <button class="btn alt" data-c="${s.cat.id}">Back to ${s.cat.n}</button></p></div></div>`;
+  app.dataset.sid=id;
+}
+function shell(s,step,body,name){
+  scr(s.n+' – '+(name||'Application'));
+  app.innerHTML=`<div class="wrap"><div class="crumb"><button data-nav="home">Home</button> › <button data-s="${s.id}">${esc(s.n)}</button> › Application</div>
+  <div class="panel"><h1>${esc(s.n)}</h1>${step?`<p style="color:var(--muted);margin:2px 0 14px">${step}</p>`:''}${body}</div></div>`;
+}
+let ay={};
+const DIST={'Rajasthan':['Jodhpur','Jaipur','Udaipur','Bikaner','Kota','Ajmer'],'Delhi':['New Delhi','North Delhi','South Delhi','East Delhi','West Delhi'],'Gujarat':['Ahmedabad','Surat','Vadodara','Rajkot'],'Maharashtra':['Mumbai','Pune','Nagpur','Nashik'],'Uttar Pradesh':['Lucknow','Kanpur','Varanasi','Agra'],'Tamil Nadu':['Chennai','Coimbatore','Madurai','Salem'],'Other':['Other']};
+const mk=n=>n.slice(0,2)+'XXXXXX'+n.slice(-2);
+function applyForm(){
+  const s=byId(app.dataset.sid);
+  if(s.id==='ayushman'){ay={};return ayMobile(s)}
+  shell(s,'Demo form. Do not enter real personal data.',`<div id="fm"><label for="fn">Full name</label><input id="fn" autocomplete="off"><label for="fm1">Mobile number</label><input id="fm1" inputmode="numeric" maxlength="10" autocomplete="off">
+  <label for="fs">State</label><select id="fs">${Object.keys(DIST).map(x=>`<option>${x}</option>`).join('')}</select><p id="er" style="color:#c62828;margin:8px 0"></p>
+  <button class="btn" id="sub">Submit Application</button></div>`,'Application form');
+}
+function ayMobile(s,msg){
+  shell(s,'Step 1 of 3 · Mobile verification',`<label for="amob">Enter your mobile number</label><input id="amob" inputmode="numeric" maxlength="10" placeholder="10-digit mobile number" value="${esc(ay.mob||'')}" autocomplete="off">
+  <p id="er" style="color:#c62828;margin:8px 0">${msg||''}</p><button class="btn" id="sendotp">Send OTP</button>`,'Enter mobile number');
+}
+function ayOtp(s,msg){
+  shell(s,'Step 1 of 3 · Mobile verification',`<div class="ok" style="margin-bottom:10px"><b>OTP has been sent</b> to mobile number ${mk(ay.mob)}.<br><small style="color:var(--muted)">Demo only: no SMS is sent. Use OTP <b>${ay.otp}</b>.</small></div>
+  <label for="aotp">Enter 6-digit OTP</label><input id="aotp" inputmode="numeric" maxlength="6" placeholder="······" autocomplete="off">
+  <p id="er" style="color:#c62828;margin:8px 0">${msg||''}</p><button class="btn" id="verifyotp">Verify OTP</button> <button class="btn alt" id="resend">Resend OTP</button> <button class="btn alt" id="chg">Change number</button>`,'Enter OTP');
+}
+function ayForm(s,msg){
+  const v=ay.f||{};
+  shell(s,'Step 2 of 3 · Applicant details',`<label for="an">Full name</label><input id="an" value="${esc(v.name||'')}" autocomplete="off">
+  <label for="ag">Gender</label><select id="ag">${['Male','Female','Other'].map(x=>`<option ${v.gender===x?'selected':''}>${x}</option>`).join('')}</select>
+  <label for="aa">Age</label><input id="aa" type="number" min="0" max="120" value="${esc(v.age||'')}">
+  <label for="ays">State</label><select id="ays">${Object.keys(DIST).map(x=>`<option ${v.state===x?'selected':''}>${x}</option>`).join('')}</select>
+  <label for="ayd">District</label><select id="ayd">${DIST[v.state||'Rajasthan'].map(x=>`<option ${v.district===x?'selected':''}>${x}</option>`).join('')}</select>
+  <label for="ai">Annual family income (₹)</label><input id="ai" type="number" min="0" value="${esc(v.income||'')}">
+  <label for="afm">Number of family members</label><input id="afm" type="number" min="1" max="30" value="${esc(v.members||'')}">
+  <label for="aad">Aadhaar card number</label><input id="aad" inputmode="numeric" maxlength="12" placeholder="12-digit Aadhaar number" value="${esc(v.aadhaar||'')}" autocomplete="off">
+  <p id="er" style="color:#c62828;margin:8px 0">${msg||''}</p><button class="btn" id="aysub">Submit</button>`,'Applicant details');
+  if(msg)ay.f=v;
+}
+function ayWait(s){
+  shell(s,'',`<div id="spin" style="text-align:center;padding:36px 0"><div class="spin" aria-hidden="true">↻</div><p style="font-weight:600;margin:14px 0 4px">Submitting your application…</p><p style="color:var(--muted);margin:0">Please do not refresh or go back.</p></div>`,'Submitting');
+  setTimeout(()=>{if($('#spin'))ayAck(s)},1800);
+}
+function ayAck(s){
+  const f=ay.f,t=new Date(),ref='ABPMJAY-'+t.getFullYear()+'-'+Math.floor(10000000+Math.random()*90000000);
+  const when=t.toLocaleString('en-IN',{day:'2-digit',month:'long',year:'numeric',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:true});
+  const R=(k,v)=>`<tr><td style="padding:6px 10px;color:var(--muted);width:42%">${k}</td><td style="padding:6px 10px"><b>${esc(v)}</b></td></tr>`;
+  shell(s,'',`<div class="ok"><h3>✔ Application submitted successfully</h3><p style="margin:0 0 10px">Acknowledgment Receipt</p>
+  <table style="width:100%;border-collapse:collapse">${R('Application reference no.',ref)}${R('Date &amp; time of submission'.replace('&amp;','&'),when)}${R('Scheme','Ayushman Bharat Card (PM-JAY)')}${R('Applicant name',f.name)}${R('Gender / Age',f.gender+' / '+f.age)}${R('State / District',f.state+' / '+f.district)}${R('Family members',f.members)}${R('Annual family income','₹ '+Number(f.income).toLocaleString('en-IN'))}${R('Aadhaar number','XXXX XXXX '+f.aadhaar.slice(-4))}${R('Registered mobile',mk(ay.mob))}${R('Status','Submitted · Under verification')}</table>
+  <p style="color:var(--muted);margin:12px 0 0">Eligibility will be verified against the beneficiary database. Expected processing time: 7 to 15 working days. Please keep the reference number for tracking. (Demo only; nothing was sent anywhere.)</p></div>
+  <p style="margin-top:16px"><button class="btn" id="prt">Print Acknowledgment</button> <button class="btn alt" data-nav="home">Back to Home</button></p>`,'Acknowledgment');
+}
+function done(){
+  const s=byId(app.dataset.sid),n=$('#fn').value.trim(),m=$('#fm1').value.trim();
+  if(!n||!/^\d{10}$/.test(m)){$('#er').textContent='Please enter your name and a valid 10-digit mobile number.';return}
+  const ref='DEMO-'+new Date().getFullYear()+'-'+Math.floor(100000+Math.random()*900000);
+  $('#fm').outerHTML=`<div class="ok"><h3>✔ Application submitted</h3><p>Thank you, <b>${esc(n)}</b>. Your request for <b>${esc(s.n)}</b> has been received.</p><p>Reference number: <b>${ref}</b></p><p style="color:var(--muted)">This is a demo; nothing was sent anywhere.</p><button class="btn" data-nav="home">Back to Home</button></div>`;scr(s.n+' – Application submitted');
+}
+function results(q,cat){
+  nav('none');scr('Search results'); const k=q.toLowerCase();
+  const r=all.filter(s=>(!cat||cat==='All'||cat==='Services')&&(!k||(s.n+s.d+s.ds+s.cat.n).toLowerCase().includes(k)));
+  app.innerHTML=`<div class="wrap"><div class="crumb"><button data-nav="home">Home</button> › Search results</div><div class="panel"><h1>Search results</h1><p style="color:var(--muted)">${r.length} result(s) for “${esc(q)}” in ${esc(cat||'All')}</p>
+  <div class="list">${r.length?r.map(svcRow).join(''):'<div class="empty">No matching services found. Try a different keyword, or choose “All” or “Services”.</div>'}</div></div></div>`;
+}
+function suggest(){
+  $('#sug').innerHTML=`<h2 style="margin-bottom:8px">Notify Us</h2><label for="sn">Service name or issue</label><input id="sn"><label for="sd">Details</label><textarea id="sd" rows="3"></textarea><p style="margin-top:12px"><button class="btn" id="ssub">Send</button> <button class="btn alt" id="scan">Cancel</button></p>`;
+}
+function route(){
+  const h=location.hash.slice(1); dtab='o'; window.scrollTo(0,0);
+  if(h.startsWith('c-'))category(h.slice(2)); else if(h.startsWith('s-'))service(h.slice(2)); else home();
+}
+document.addEventListener('click',e=>{
+  const dd=e.target.closest('.dd');
+  document.querySelectorAll('.dd.open').forEach(x=>{if(x!==dd)x.classList.remove('open')});
+  const t=e.target.closest('[data-tg],[data-s],[data-c],[data-nav],[data-dt],button[id]'); if(!t)return;
+  if(t.dataset.tg){dd.classList.toggle('open');return}
+  if(dd)dd.classList.remove('open');
+  if(t.dataset.s)return go('s-'+t.dataset.s);
+  if(t.dataset.c)return go('c-'+t.dataset.c);
+  if(t.dataset.nav){const n=t.dataset.nav;return n.startsWith('c-')?go(n):go('home')}
+  if(t.dataset.dt){dtab=t.dataset.dt;return service(app.dataset.sid)}
+  const id=t.id;
+  if(id==='home')go('home'); 
+  else if(id==='apply')applyForm(); else if(id==='sub')done();
+  else if(id==='sendotp'||id==='resend'){
+    const s=byId(app.dataset.sid);
+    if(id==='sendotp'){const m=$('#amob').value.trim();if(!/^\d{10}$/.test(m)){$('#er').textContent='Please enter a valid 10-digit mobile number.';return}ay.mob=m}
+    ay.otp=String(Math.floor(100000+Math.random()*900000));ayOtp(s)}
+  else if(id==='chg')ayMobile(byId(app.dataset.sid))
+  else if(id==='verifyotp'){const s=byId(app.dataset.sid),o=$('#aotp').value.trim();
+    if(o!==ay.otp){ayOtp(s,'Incorrect OTP. Please try again.');return}
+    shell(s,'Step 1 of 3 · Mobile verification',`<div class="ok"><h3>✔ Mobile number verified</h3><p>${mk(ay.mob)} has been verified successfully.</p><button class="btn" id="aycont">Continue</button></div>`,'Mobile number verified')}
+  else if(id==='aycont')ayForm(byId(app.dataset.sid))
+  else if(id==='aysub'){const s=byId(app.dataset.sid);
+    const f={name:$('#an').value.trim(),gender:$('#ag').value,age:$('#aa').value.trim(),state:$('#ays').value,district:$('#ayd').value,income:$('#ai').value.trim(),aadhaar:$('#aad').value.trim(),members:$('#afm').value.trim()};
+    let m='';
+    if(f.name.length<2)m='Please enter your full name.';
+    else if(!(f.age>=0&&f.age<=120)||f.age==='')m='Please enter a valid age.';
+    else if(f.income===''||Number(f.income)<0)m='Please enter your annual family income.';
+    else if(!(Number(f.members)>=1&&Number(f.members)<=30))m='Please enter the number of family members (1 to 30).';
+    else if(!/^\d{12}$/.test(f.aadhaar))m='Aadhaar number must be exactly 12 digits.';
+    ay.f=f;if(m){ayForm(s,m);return}ayWait(s)}
+  else if(id==='prt')window.print();
+  else if(id==='notify')suggest(); else if(id==='scan')home();
+  else if(id==='ssub'){if(!$('#sn').value.trim()){$('#sn').focus();return}$('#sug').innerHTML='<div class="ok"><h3>✔ Thank you</h3><p>Your suggestion has been noted (demo only).</p></div>'}
+  else if(id==='tinc')fs(1); else if(id==='tdec')fs(-1); else if(id==='treset')fs(0);
+  else if(id==='hc')document.documentElement.classList.toggle('hc');
+  else if(id==='img')document.body.classList.toggle('noimg');
+  else if(id==='cur')document.body.classList.toggle('bigc');
+});
+document.addEventListener('change',e=>{if(e.target.id==='ays'){$('#ayd').innerHTML=DIST[e.target.value].map(x=>`<option>${x}</option>`).join('')}});
+let size=16;function fs(d){size=d===0?16:Math.min(22,Math.max(12,size+d));document.documentElement.style.fontSize=size+'px'}
+$('#scat').innerHTML=['All','Acts','Citizen Engagements','Directory','Explore India','Government Datasets','Helplines','News','Public Utilities','Schemes','Services','Others'].map(x=>`<option>${x}</option>`).join('');
+$('#sf').addEventListener('submit',e=>{e.preventDefault();results($('#sq').value.trim(),$('#scat').value)});
+window.addEventListener('hashchange',route);route();
+</script>
+<script src="raasta.js"></script>
+<script>
+/* Saarthi ON/OFF switch (demo). Saarthi.setEnabled() shows or removes the widget at once and remembers the choice. */
+(function(){
+  var b=document.getElementById('saarthi-switch');
+  if(!b)return;
+  function paint(){var on=!!(window.Saarthi&&Saarthi.isEnabled());b.textContent='Saarthi: '+(on?'ON':'OFF');b.setAttribute('aria-pressed',on?'true':'false')}
+  b.addEventListener('click',function(){if(window.Saarthi){Saarthi.setEnabled(!Saarthi.isEnabled());paint()}});
+  paint();
+})();
+</script>
+</body>
+</html>
