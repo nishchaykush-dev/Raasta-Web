@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Demo Bijli Seva Nigam</title>
+<link href="https://fonts.googleapis.com/css2?family=Hind:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f1f4f7;--card:#fff;--fg:#14202b;--mut:#51606d;--pri:#0b4f8a;--onpri:#fff;--line:#c9d3dc;--acc:#e6eff8;--ok:#0f7b5f;--bad:#b3261e;--warn:#ffb300;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root{--bg:#0e1620;--card:#172330;--fg:#e8eef4;--mut:#9fb0bf;--pri:#7cbcf5;--onpri:#06223a;--line:#33465a;--acc:#1d2e40;--ok:#4cc9a0;--bad:#ff8a80;color-scheme:dark}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.5 Hind,system-ui,sans-serif}
+button{font:inherit;cursor:pointer;color:inherit}
+.demo{background:var(--warn);color:#000;text-align:center;font-weight:700;font-size:13px;padding:3px 8px}
+.top{background:var(--pri);color:var(--onpri);padding:12px 16px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+.top h1{margin:0;font-size:20px}.top small{opacity:.85}
+.sr{display:flex;gap:6px}.sr input{font:inherit;padding:7px 10px;border:0;border-radius:6px;width:170px;background:var(--card);color:var(--fg)}
+.sr button{background:var(--card);color:var(--pri);border:0;border-radius:6px;padding:7px 12px;font-weight:600}
+#nav{display:flex;flex-wrap:wrap;background:var(--card);border-bottom:2px solid var(--line);padding:2px 6px}
+.nl{background:none;border:0;padding:9px 8px;color:var(--pri);font-size:13px;font-weight:600}
+.rel,.rel2{position:relative}
+.dd,.sub{display:none;position:absolute;z-index:30;min-width:220px;background:var(--card);border:2px solid var(--line);box-shadow:0 6px 18px #0004}
+.dd{left:0;top:100%}.rel:nth-last-child(-n+4) .dd{left:auto;right:0}.sub{left:100%;top:0}
+.rel:hover>.dd,.rel:focus-within>.dd,.rel2:hover>.sub,.rel2:focus-within>.sub{display:block}
+#nav.x .dd,#nav.x .sub{display:none!important}
+.dd button,.sub button{display:block;width:100%;text-align:left;border:0;border-bottom:1px solid var(--line);background:none;padding:9px 12px;font-size:13px}
+.grp::after{content:" ▸"}
+.dd button:hover,.sub button:hover{background:var(--acc)}
+@media (max-width:700px){.sub{position:static;box-shadow:none;border:0;background:var(--acc)}.dd{min-width:200px}}
+#view{max-width:980px;margin:0 auto;padding:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px;margin:10px 0}
+.card h2{margin-top:0}
+.hero{background:var(--pri);color:var(--onpri);border-radius:10px;padding:22px 18px}.hero h2{margin:0 0 4px}
+.fig{display:flex;flex-wrap:wrap;gap:10px}.fig div{flex:1;min-width:130px;background:var(--acc);border-radius:8px;padding:10px;text-align:center}.fig b{display:block;font-size:22px}
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.tile{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:14px;font-weight:600;color:var(--pri);text-align:left}
+.bc{font-size:13px;color:var(--mut)}.bc button{background:none;border:0;color:var(--pri);padding:2px}
+.lay{display:grid;grid-template-columns:230px 1fr;gap:12px}
+@media (max-width:700px){.lay{grid-template-columns:1fr}}
+aside{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px;margin:10px 0;align-self:start}
+aside button{display:block;width:100%;text-align:left;border:0;background:none;padding:7px 8px;border-radius:6px;font-size:14px}
+aside button.in{padding-left:22px;font-size:13px}aside button.on{background:var(--acc);font-weight:700}
+.ls{padding-left:0;list-style:none}.ls li{padding:8px 0;border-bottom:1px solid var(--line)}.ls button{background:none;border:0;color:var(--pri);font-weight:600;font-size:16px;padding:0;text-align:left}
+.mut{color:var(--mut)}
+.tw{overflow-x:auto}table{border-collapse:collapse;width:100%;margin:8px 0}td,th{border-bottom:1px solid var(--line);padding:7px;text-align:left;font-size:14px}th{background:var(--acc)}
+label{display:block;font-weight:600;margin-top:10px}
+.f{font:inherit;width:100%;padding:10px;border:2px solid var(--line);border-radius:6px;background:var(--bg);color:var(--fg);margin:4px 0}
+.btn{background:var(--pri);color:var(--onpri);border:0;border-radius:6px;padding:10px 16px;margin:8px 6px 4px 0}
+.btn.alt{background:var(--card);color:var(--pri);border:1px solid var(--pri)}.btn.red{background:var(--bad);color:#fff}
+.ok{background:var(--acc);border-left:6px solid var(--ok);padding:10px 12px;border-radius:6px;margin-top:10px}
+.err{color:var(--bad);font-weight:600;margin-top:8px}
+.pg{display:flex;flex-wrap:wrap;gap:6px;list-style:none;padding:0;margin:0 0 14px}.pg li{flex:1;min-width:72px;text-align:center;padding:6px 4px;border-radius:20px;background:var(--acc);color:var(--mut);font-size:13px;font-weight:600}.pg li.done{background:var(--ok);color:var(--onpri)}.pg li.cur{background:var(--pri);color:var(--onpri)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.tm{font-size:15px}.tm b{font-size:22px;font-variant-numeric:tabular-nums}.tm.low b{color:var(--bad)}
+.pr{text-align:center;padding:30px 16px}.spin{width:96px;height:96px;margin:10px auto;display:block}
+.rot{transform-box:view-box;transform-origin:center;animation:rot 1s linear infinite}@keyframes rot{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.rot{animation:none}}
+footer{max-width:980px;margin:0 auto;padding:10px 16px 30px;font-size:13px;color:var(--mut)}
+</style>
+</head>
+<body>
+<div class="demo">DEMO – a pretend electricity board. No real money, no real data. <button id="saarthi-switch" data-saarthi-ignore type="button" style="margin-left:10px;font:inherit;font-size:12px;font-weight:700;padding:2px 10px;border:2px solid #000;border-radius:14px;background:#fff;color:#000"></button></div>
+<div class="top"><div><h1>Demo Bijli Seva Nigam</h1><small>Reliable power, every day</small></div>
+ <div class="sr"><input id="q" placeholder="Search the site" aria-label="Search the site"><button data-a="search">Search</button></div></div>
+<nav id="nav" aria-label="Main menu"></nav>
+<main id="view"></main>
+<footer>24x7 helpline 1912 · care@dbsn.example · Vidyut Bhawan, Demo City · © Demo Bijli Seva Nigam (pretend, for a hackathon)</footer>
+<script>
+var $=function(i){return document.getElementById(i)};
+function L(t,c,k){return{t:t,c:c,k:k}}function G(t,g){return{t:t,g:g}}function S(t,i,it){return{t:t,i:i,it:it}}
+var SEC=[
+S('About Us','Demo Bijli Seva Nigam (DBSN) is a pretend electricity distribution company made for a hackathon.',[
+ L('Profile','DBSN supplies electricity to about 41 lakh pretend consumers in 12 districts.\n- Established: 2005 (demo)\n- Sub-divisions: 310\n- Feeders: 2,150'),
+ L('Vision & Mission','Vision: reliable and affordable power for every household.\nMission:\n- Serve every consumer with respect\n- Keep outages short\n- Offer every service online'),
+ L('Board of Directors','Name | Role\nA. Verma | Chairman\nS. Kaur | Managing Director\nR. Iyer | Director (Finance)\nP. Nair | Director (Technical)'),
+ L('Organisation Chart','Corporate Office → 3 Zones → 12 Circles → 48 Divisions → 310 Sub-divisions.'),
+ L('Annual Reports','- Annual Report 2025-26\n- Annual Report 2024-25\n- Annual Report 2023-24\nDownloads are not available in this demo.')]),
+S('Consumer Services','Services for existing consumers. Choose a group or a service.',[
+ G('Billing & Payments',[
+  L('Pay Your Bill','Pay your electricity bill online using your 10-digit consumer account number.','pay'),
+  L('View / Download Bill','Enter your account number to see your latest bill.','view'),
+  L('Bill Payment Centres','District | Centre | Hours\nCity A | Main Cash Counter | 9 am – 5 pm\nCity B | Sub-division Office | 9 am – 4 pm\nCity C | Bijli Bill Branch | 10 am – 6 pm'),
+  L('Duplicate Receipt','To get a duplicate receipt:\n- Keep your payment reference ready\n- Visit any bill payment centre\n- Ask for a duplicate receipt (fee ₹10)'),
+  L('Online Payment Grievance','If money was deducted but the bill still shows unpaid:\n- Note the transaction reference\n- Wait 48 hours\n- Then register a complaint with that reference')]),
+ G('Meter Services',[
+  L('Meter Reading Schedule','Zone | Reading dates\nNorth | 1st – 5th\nCentral | 6th – 12th\nSouth | 13th – 20th'),
+  L('Meter Testing Request','If you think your meter runs fast, apply for a meter test.\n- Fee: ₹250\n- Test within 7 working days'),
+  L('Meter Replacement','Faulty or burnt meters are replaced free of cost.\n- Report the fault\n- A technician visits in 3 working days')]),
+ G('Name / Load Change',[
+  L('Change of Name','Documents needed:\n- Latest bill\n- Sale deed or rent agreement\n- Photo ID of the new owner'),
+  L('Load Extension / Reduction','Apply to change your sanctioned load. A site visit is made before approval.'),
+  L('Category Change','Move between Domestic and Commercial category by applying at your sub-division office.')]),
+ G('Consumer Grievances',[
+  L('Billing Dispute','If your bill looks wrong, ask for a bill review within 30 days of receiving it.'),
+  L('Supply Interruption','Report power cuts to the 24x7 helpline. Planned cuts are announced 24 hours before.'),
+  L('Escalation Matrix','Level | Officer | Time limit\n1 | Sub-division Officer | 7 days\n2 | Division Engineer | 15 days\n3 | Circle Head | 30 days')]),
+ L('Download Forms','- Change of Name form\n- Load change form\n- Meter test form\n- Category change form\nDownloads are not available in this demo.')]),
+S('Tariff','Rates are set by the regulatory commission. All rates here are made-up demo rates.',[
+ L('Domestic Tariff','Units per month | Rate per unit\nUp to 50 | ₹2.00\n51 – 150 | ₹2.50\n151 – 250 | ₹5.25\n251 – 500 | ₹6.30\nAbove 500 | ₹7.10'),
+ L('Commercial & Industrial Tariff','Category | Fixed charge | Energy charge\nShops | ₹120 per kW | ₹7.00\nSmall industry | ₹150 per kW | ₹6.50\nLarge industry | ₹300 per kVA | ₹6.00'),
+ L('Agricultural Tariff','Farm pumps are billed at a subsidised rate.\n- Up to 5 HP: ₹0.90 per unit\n- Above 5 HP: ₹1.40 per unit'),
+ L('Tariff Calculator','Enter the units used to estimate a domestic bill.','calc'),
+ L('Fixed Charges & Surcharges','- Fixed charge: ₹50 per kW per month\n- FPPAS surcharge: changes every quarter\n- Electricity duty: 5%\n- Late payment: 1.5% per month')]),
+S('Projects','Network upgrades across the DBSN area.',[
+ L('Ongoing Projects','Project | Progress\nNew 132 kV substation, City B | 70%\nUnderground cabling, City A | 45%\nFeeder upgrade, Zone North | 20%'),
+ L('Completed Projects','- 33 kV ring main, City C (2025)\n- 120 transformers replaced (2025)\n- Solar-powered pump feeders (2024)'),
+ L('Smart Metering Programme','Smart meters show your usage and reduce wrong bills.\n- 8 lakh installed\n- 20 lakh planned by 2028'),
+ L('Feeder Separation','Separate feeders for farms and villages give villages 24-hour supply.')]),
+S('Tenders','Tenders for works and supplies.',[
+ L('Active Tenders','Tender no. | Work | Last date\nT-101 | Supply of 11 kV cables | 20 Nov 2026\nT-102 | Transformer repair | 28 Nov 2026\nT-103 | Meter boxes | 5 Dec 2026'),
+ L('Archived Tenders','- T-088 Pole supply (closed)\n- T-091 Line works, City C (closed)'),
+ L('Vendor Registration','To register as a vendor:\n- Fill the vendor form\n- Attach PAN and GST certificate\n- Submit at the Corporate Office')]),
+S('Circulars','Official notices for consumers and staff.',[
+ L('Latest Circulars','- 20 Oct 2026: Revised FPPAS surcharge\n- 12 Oct 2026: Rooftop solar subsidy vendors\n- 03 Oct 2026: Maintenance of 33 kV feeders'),
+ L('Tariff Orders','- Tariff Order 2026-27\n- Tariff Order 2025-26\n- True-up Order 2024-25'),
+ L('Office Orders','- Holiday list 2027\n- Cash counter timings in festival weeks')]),
+S('Nearest Offices','Find a DBSN office near you.',[
+ L('District Offices','District | Office | Phone\nCity A | Circle Office | 011-5550-101\nCity B | Circle Office | 011-5550-102\nCity C | Circle Office | 011-5550-103'),
+ L('Sub-division Offices','Visit your sub-division office for billing and meter work. Open 10 am – 5 pm, Monday to Saturday.'),
+ L('Customer Care Centres','- City A: Gandhi Road\n- City B: Station Road\n- City C: Market Square\nOpen 9 am – 6 pm.')]),
+S('Careers','Join DBSN.',[
+ L('Current Openings','Post | Vacancies | Last date\nJunior Engineer | 40 | 30 Nov 2026\nLineman | 120 | 15 Dec 2026\nAccounts Clerk | 25 | 15 Dec 2026'),
+ L('Apprenticeship','ITI students can apply for one-year apprenticeships.\n- Stipend: ₹8,000 per month'),
+ L('Results & Notices','- Lineman exam result 2026\n- Junior Engineer admit card')]),
+S('RTI','Right to Information.',[
+ L('About RTI','Any citizen can ask for information held by DBSN under the RTI Act.'),
+ L('How to File an RTI','- Write your question clearly\n- Pay the ₹10 fee\n- Send it to the Public Information Officer\n- Expect a reply within 30 days'),
+ L('Public Information Officers','Office | Officer\nCorporate Office | M. Reddy\nZone North | K. Singh\nZone South | L. Das'),
+ L('RTI Fees','- Application fee: ₹10\n- Photocopy: ₹2 per page\n- BPL applicants: no fee')]),
+S('Solar Connection','Install rooftop solar and earn credits on your bill.',[
+ L('Rooftop Solar Scheme','Make power on your own roof. Extra power goes to the grid and is credited to your bill.'),
+ L('Eligibility','- A shade-free roof area\n- A valid DBSN connection\n- No pending dues'),
+ L('Subsidy Details','Capacity | Subsidy\nUp to 2 kW | ₹30,000 per kW\n2 – 3 kW | ₹18,000 per kW\nAbove 3 kW | Fixed ₹78,000'),
+ L('Apply for Net Metering','Fill this form to apply.','solar'),
+ L('Empanelled Vendors','- SunBright Energy\n- GreenRoof Solutions\n- Surya Installers')]),
+S('New Connection','Apply for a new electricity connection.',[
+ L('Documents Required','- Photo ID\n- Address proof\n- Ownership or rent proof\n- Passport photo'),
+ L('Application Procedure','- Fill the online form\n- Pay the application fee\n- Site visit in 5 days\n- Connection in 15 days'),
+ L('Apply Online','Fill the form to apply.','newc'),
+ L('Track Application','Enter your application reference number.','track'),
+ L('Security Deposit & Charges','Load | Security deposit\nUp to 2 kW | ₹1,500\n2 – 5 kW | ₹3,000')]),
+S('Register Complaints','Report problems with supply, billing or meters.',[
+ L('Lodge a Complaint','Fill the form below.','comp'),
+ L('Track Complaint','Enter your complaint number.','track'),
+ L('Helpline Numbers','Issue | Number\nPower cut | 1912\nBilling | 1800-000-0100\nSafety emergency | 1800-000-0101')]),
+S('Contact Us','Reach DBSN.',[
+ L('Corporate Office','DBSN Corporate Office, Vidyut Bhawan, Demo City. Monday to Saturday, 10 am – 5 pm.'),
+ L('Customer Care','24x7 helpline: 1912\nEmail: care@dbsn.example'),
+ L('Feedback','Tell us how we can improve.','feed')])];
+var F={view:{f:['Consumer Account Number (10 digits)'],b:'View Bill'},
+ comp:{f:['Consumer Account Number','Type of complaint|sel:No supply,Wrong bill,Meter fault,Voltage fluctuation','Details|area'],b:'Submit Complaint',r:'CMP'},
+ track:{f:['Reference number'],b:'Track',s:'Status of {0}: under process. Expected completion in 3 working days.'},
+ newc:{f:['Applicant name','Mobile number','Address|area','Load required (kW)','Category|sel:Domestic,Commercial,Agricultural'],b:'Submit Application',r:'APP'},
+ solar:{f:['Consumer Account Number','Proposed solar capacity (kW)','Roof area (sq ft)'],b:'Apply for Net Metering',r:'SOL'},
+ feed:{f:['Your name','Message|area'],b:'Send Feedback',r:'FDB'}};
+var R={v:'home',s:0,p:'',tx:'',q:''},acct='',tmr=null,procT=null,otpEnd=0;
+function esc(x){return String(x).replace(/&/g,'&amp;').replace(/</g,'&lt;')}
+function inr(n){return '₹'+n.toLocaleString('en-IN',{minimumFractionDigits:2,maximumFractionDigits:2})}
+function slabs(u){var r=[[50,2],[100,2.5],[100,5.25],[250,6.3],[1e9,7.1]],left=u,t=0,rows=[];r.forEach(function(x){var n=Math.min(left,x[0]);if(n>0){rows.push([n,x[1],n*x[1]]);t+=n*x[1];left-=n}});return{rows:rows,t:t}}
+function md(s){var o='',A=s.split('\n'),i=0;while(i<A.length){var l=A[i];
+ if(l.indexOf(' | ')>0){var r=[];while(i<A.length&&A[i].indexOf(' | ')>0)r.push(A[i++]);o+='<div class="tw"><table>'+r.map(function(x,j){return '<tr>'+x.split(' | ').map(function(c){return j?'<td>'+c+'</td>':'<th>'+c+'</th>'}).join('')+'</tr>'}).join('')+'</table></div>';continue}
+ if(l.slice(0,2)==='- '){var u=[];while(i<A.length&&A[i].slice(0,2)==='- ')u.push('<li>'+A[i++].slice(2)+'</li>');o+='<ul>'+u.join('')+'</ul>';continue}
+ o+='<p>'+l+'</p>';i++}return o}
+function nav(){var h='<button class="nl" data-n="-1|">Home</button>';
+ SEC.forEach(function(s,i){h+='<span class="rel"><button class="nl" data-n="'+i+'|">'+s.t+'</button><div class="dd">'+s.it.map(function(it,j){return it.g?'<div class="rel2"><button class="grp" data-n="'+i+'|'+j+'">'+it.t+'</button><div class="sub">'+it.g.map(function(c,k){return '<button data-n="'+i+'|'+j+'.'+k+'">'+c.t+'</button>'}).join('')+'</div></div>':'<button data-n="'+i+'|'+j+'">'+it.t+'</button>'}).join('')+'</div></span>'});
+ $('nav').innerHTML=h}
+function get(s,p){var a=p.split('.'),it=SEC[s].it[+a[0]];return a[1]!==undefined?it.g[+a[1]]:it}
+function bc(a){return '<div class="bc">'+a.map(function(x){return x[1]!==null?'<button data-n="'+x[1]+'">'+x[0]+'</button> › ':'<b>'+x[0]+'</b>'}).join('')+'</div>'}
+function list(s,items,pre){return '<ul class="ls">'+items.map(function(x,j){return '<li><button data-n="'+s+'|'+pre+j+'">'+x.t+'</button>'+(x.g?' <span class="mut">('+x.g.length+' services)</span>':'')+'</li>'}).join('')+'</ul>'}
+function side(s,p){return '<b>In this section</b>'+SEC[s].it.map(function(x,j){var on=p===''+j||p.indexOf(j+'.')===0;return '<button class="'+(on?'on':'')+'" data-n="'+s+'|'+j+'">'+x.t+'</button>'+(x.g&&on?x.g.map(function(c,k){return '<button class="in '+(p===j+'.'+k?'on':'')+'" data-n="'+s+'|'+j+'.'+k+'">'+c.t+'</button>'}).join(''):'')}).join('')}
+function formHTML(k){var f=F[k];return f.f.map(function(x,i){var a=x.split('|'),t=a[1]||'';return '<label for="f'+i+'">'+a[0]+'</label>'+(t.indexOf('sel:')===0?'<select class="f" id="f'+i+'">'+t.slice(4).split(',').map(function(o){return '<option>'+o+'</option>'}).join('')+'</select>':t==='area'?'<textarea class="f" id="f'+i+'" rows="3"></textarea>':'<input class="f" id="f'+i+'" autocomplete="off">')}).join('')+'<button class="btn" data-a="fs" data-k="'+k+'">'+f.b+'</button><div id="fr"></div>'}
+function extra(it){var k=it.k;if(k==='pay')return '<p>Select a payment mode:</p><button class="btn alt" data-a="note" data-m="Login is not available in this demo.">Login &amp; Pay</button><button class="btn" data-a="quick">Quick Pay</button><button class="btn alt" data-a="note" data-m="BBPS payment is not available in this demo.">Pay via BBPS</button><button class="btn alt" data-n="1|0.1">View Bill (without login)</button><div id="nt"></div>';
+ if(k==='calc')return '<label for="u">Units used in the month</label><input class="f" id="u" inputmode="numeric" value="312"><button class="btn" data-a="calc">Calculate</button><div id="fr"></div>';
+ return k?formHTML(k):''}
+function billHTML(a){var b=slabs(312);return '<table><tr><td>Consumer Name</td><td>R. K. Sharma (demo)</td></tr><tr><td>Account No.</td><td id="cno">'+mask(a)+'</td></tr><tr><td>Billing Month</td><td>Oct 2026</td></tr><tr><td>Units Consumed</td><td>312</td></tr><tr><td>Due Date</td><td>10 Nov 2026</td></tr><tr><td>Amount Payable</td><td id="amt"><b>'+inr(b.t)+'</b></td></tr></table>'}
+function mask(a){return a.length>=10?a.slice(0,2)+'XXXXXX'+a.slice(-2):a}
+function secHTML(s,p){var X=SEC[s],it=p?get(s,p):null,c=[['Home','-1|'],[X.t,p?s+'|':null]],b;
+ if(p&&p.indexOf('.')>0){var gi=p.split('.')[0];c.push([get(s,gi).t,s+'|'+gi])}
+ if(p)c.push([it.t,null]);
+ if(!p)b='<h2>'+X.t+'</h2><p>'+X.i+'</p>'+list(s,X.it,'');
+ else if(it.g)b='<h2>'+it.t+'</h2><p>Services in this group:</p>'+list(s,it.g,p+'.');
+ else b='<h2>'+it.t+'</h2>'+md(it.c)+extra(it);
+ return bc(c)+'<div class="lay"><aside>'+side(s,p)+'</aside><section class="card">'+b+'</section></div>'}
+function homeHTML(){var T=[[2,'Tariff'],[10,'New Connection'],[9,'Solar Connection'],[11,'Register Complaints'],[6,'Nearest Offices'],[7,'Careers']];
+ return '<div class="hero"><h2>Welcome to Demo Bijli Seva Nigam</h2><p>Services for consumers across 12 districts.</p></div>'+
+ '<div class="card fig"><div><b>41 lakh</b>consumers</div><div><b>310</b>sub-divisions</div><div><b>1912</b>24x7 helpline</div></div>'+
+ '<div class="card"><h3>Latest notices</h3><ul class="ls"><li><button data-n="5|0">Revised FPPAS surcharge (20 Oct 2026)</button></li><li><button data-n="5|0">Rooftop solar subsidy vendors (12 Oct 2026)</button></li><li><button data-n="3|0">New 132 kV substation, City B: 70% complete</button></li></ul></div>'+
+ '<h3>Quick links</h3><div class="tiles">'+T.map(function(x){return '<button class="tile" data-n="'+x[0]+'|">'+x[1]+'</button>'}).join('')+'</div>'}
+function prog(n){var s=['Bill','Card','OTP','Receipt'];return '<ol class="pg" aria-label="Payment progress">'+s.map(function(x,i){return '<li class="'+(i<n?'done':i===n?'cur':'')+'"'+(i===n?' aria-current="step"':'')+'>'+x+'</li>'}).join('')+'</ol>'}
+function txNew(t){
+ if(t==='card')return '<div class="card">'+prog(1)+'<h2>Card Details</h2><p class="mut">Amount payable: <b>'+inr(slabs(312).t)+'</b>. This is a demo: do not enter a real card. Any 16-digit number works.</p>'+
+  '<label for="cardNo">Card number</label><input class="f" id="cardNo" inputmode="numeric" autocomplete="off" maxlength="19" placeholder="1234 5678 9012 3456">'+
+  '<label for="cardName">Card holder name</label><input class="f" id="cardName" autocomplete="off" placeholder="Name as on the card">'+
+  '<div class="two"><div><label for="cardExp">Expiry (MM/YY)</label><input class="f" id="cardExp" inputmode="numeric" autocomplete="off" maxlength="5" placeholder="MM/YY"></div>'+
+  '<div><label for="cardCvv">CVV</label><input class="f" id="cardCvv" type="password" inputmode="numeric" autocomplete="off" maxlength="4" placeholder="3 digits"></div></div>'+
+  '<div id="fr"></div><button class="btn" data-a="card">Continue</button><button class="btn alt" data-n="-1|">Cancel</button></div>';
+ if(t==='otp')return '<div class="card">'+prog(2)+'<h2>OTP Verification</h2><p>Enter the 6-digit OTP sent to your registered mobile number. Demo: any 6 digits work.</p><p class="tm">Time left: <b id="tm" role="timer">05:00</b></p>'+
+  '<label for="otpIn">One-time password (OTP)</label><input class="f" id="otpIn" inputmode="numeric" autocomplete="off" maxlength="6" placeholder="6 digits"><div id="fr"></div>'+
+  '<button class="btn" id="vbtn" data-a="verify">Verify</button><button class="btn alt" id="rbtn" data-a="resend" hidden>Resend OTP</button><button class="btn alt" data-n="-1|">Cancel</button></div>';
+ return '<div class="card pr">'+prog(2)+'<svg class="spin" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="40" fill="none" stroke="var(--line)" stroke-width="8"/><g class="rot"><path d="M50 10A40 40 0 1 1 10 50" fill="none" stroke="var(--pri)" stroke-width="8" stroke-linecap="round"/><path d="M0 50h20L10 33z" fill="var(--pri)"/></g></svg><h2>Processing your payment</h2><p class="mut" role="status">Please wait. Do not press back or refresh the page.</p></div>'}
+function startTimer(){var el=$('tm');function tick(){var s=Math.max(0,Math.round((otpEnd-Date.now())/1000));el.textContent=('0'+Math.floor(s/60)).slice(-2)+':'+('0'+s%60).slice(-2);el.parentNode.classList.toggle('low',s<=60);if(s===0){clearInterval(tmr);$('otpIn').disabled=true;$('vbtn').disabled=true;$('rbtn').hidden=false;msg('The OTP has expired. Press Resend OTP to get a new one.',1)}}tick();tmr=setInterval(tick,1000)}
+function txHTML(){var t=R.tx;if(t==='card'||t==='otp'||t==='proc')return txNew(t);
+ if(t==='number')return '<div class="card">'+prog(0)+'<h2>Quick Pay</h2><label for="acct">Consumer Account Number (10 digits)</label><input class="f" id="acct" inputmode="numeric" maxlength="10" autocomplete="off" value="'+acct+'"><div id="fr"></div><button class="btn" data-a="num">Submit</button><button class="btn alt" data-n="-1|">Cancel</button></div>';
+ if(t==='confirm')return '<div class="card">'+prog(0)+'<h2>Bill Details</h2>'+billHTML(acct)+'<button class="btn red" data-a="pay">Proceed to Pay</button><button class="btn alt" data-a="quick">Edit Details</button><button class="btn alt" data-n="-1|">Cancel</button></div>';
+ var d=new Date();return '<div class="card">'+prog(4)+'<h2 style="color:var(--ok)">✔ Payment successful (demo)</h2><p>No real money moved.</p><div class="ok"><b>Your payment will be credited within 24 hours.</b></div><div class="card"><h3>Record slip</h3><table><tr><td>Amount</td><td>'+inr(slabs(312).t)+'</td></tr><tr><td>Account</td><td>'+mask(acct)+'</td></tr><tr><td>Date and time</td><td>'+d.toLocaleString()+'</td></tr><tr><td>Reference</td><td>DEMO-'+String(d.getTime()).slice(-6)+'</td></tr></table><p class="mut">This is your own record, not an official complaint. If a payment was a mistake, tell your bank at once and show this.</p></div><button class="btn" data-n="-1|">Back to Home</button></div>'}
+function flat(){var o=[];SEC.forEach(function(s,i){s.it.forEach(function(it,j){if(it.g)it.g.forEach(function(c,k){o.push([i,j+'.'+k,c])});else o.push([i,''+j,it])})});return o}
+function searchHTML(){var q=R.q.toLowerCase(),m=q?flat().filter(function(x){return (x[2].t+' '+x[2].c).toLowerCase().indexOf(q)>-1}):[];
+ return '<div class="card"><h2>Search results for “'+esc(R.q)+'”</h2>'+(m.length?'<ul class="ls">'+m.map(function(x){return '<li><button data-n="'+x[0]+'|'+x[1]+'">'+x[2].t+'</button> <span class="mut">in '+SEC[x[0]].t+'</span></li>'}).join('')+'</ul>':'<p>No results found.</p>')+'</div>'}
+/* Saarthi: tells "Where am I?" which screen is showing (this page never changes its address) */
+function screenName(){if(R.v==='home')return 'Home';if(R.v==='search')return 'Search results';
+ if(R.v==='tx')return R.tx==='number'?'Quick Pay: enter account number':R.tx==='confirm'?'Bill details: confirm payment':R.tx==='card'?'Card details':R.tx==='otp'?'OTP verification':R.tx==='proc'?'Processing payment':'Payment successful';
+ var X=SEC[R.s];return R.p?get(R.s,R.p).t:X.t}
+function show(){clearInterval(tmr);clearTimeout(procT);$('view').setAttribute('data-saarthi-screen',screenName());$('view').innerHTML=R.v==='home'?homeHTML():R.v==='tx'?txHTML():R.v==='search'?searchHTML():secHTML(R.s,R.p);window.scrollTo(0,0);if(R.v==='tx'&&R.tx==='otp')startTimer();if(R.v==='tx'&&R.tx==='proc')procT=setTimeout(function(){R={v:'tx',tx:'success'};show()},3200)}
+function msg(h,bad){$('fr').innerHTML='<div class="'+(bad?'err':'ok')+'">'+h+'</div>'}
+function act(a,el){
+ if(a==='search'){R={v:'search',q:$('q').value.trim()};show()}
+ else if(a==='note')$('nt').innerHTML='<div class="ok">'+el.dataset.m+'</div>';
+ else if(a==='quick'){R={v:'tx',tx:'number'};show()}
+ else if(a==='num'){var v=$('acct').value.replace(/\D/g,'');acct=v;if(v.length<10)msg('Please enter all 10 digits.',1);else{R={v:'tx',tx:'confirm'};show()}}
+ else if(a==='pay'){R={v:'tx',tx:'card'};show()}
+ else if(a==='card'){var cn=$('cardNo').value.replace(/\D/g,''),nm=$('cardName').value.trim(),ex=$('cardExp').value.trim(),cv=$('cardCvv').value.replace(/\D/g,''),m=/^(\d{2})\/(\d{2})$/.exec(ex);
+  if(cn.length!==16)return msg('Please enter all 16 digits of the card number.',1);
+  if(nm.length<2)return msg('Please enter the card holder name.',1);
+  if(!m||+m[1]<1||+m[1]>12)return msg('Enter the expiry date as MM/YY, for example 08/28.',1);
+  var nw=new Date();if(+m[2]<nw.getFullYear()%100||(+m[2]===nw.getFullYear()%100&&+m[1]<nw.getMonth()+1))return msg('This card has expired. Please use another card.',1);
+  if(cv.length<3)return msg('Please enter the 3-digit CVV.',1);
+  $('cardNo').value='';$('cardCvv').value='';otpEnd=Date.now()+300000;R={v:'tx',tx:'otp'};show()}
+ else if(a==='verify'){if(Date.now()>otpEnd)return msg('The OTP has expired. Press Resend OTP to get a new one.',1);if($('otpIn').value.replace(/\D/g,'').length!==6)return msg('Please enter the 6-digit OTP.',1);R={v:'tx',tx:'proc'};show()}
+ else if(a==='resend'){otpEnd=Date.now()+300000;show()}
+ else if(a==='calc'){var u=Math.max(0,+$('u').value||0),b=slabs(u);msg('<table><tr><th>Units</th><th>Rate</th><th>Amount</th></tr>'+b.rows.map(function(r){return '<tr><td>'+r[0]+'</td><td>₹'+r[1]+'</td><td>'+inr(r[2])+'</td></tr>'}).join('')+'<tr><td colspan="2"><b>Total energy charge</b></td><td><b>'+inr(b.t)+'</b></td></tr></table>')}
+ else if(a==='fs'){var k=el.dataset.k,f=F[k],vals=f.f.map(function(x,i){return $('f'+i).value.trim()});
+  if(vals.some(function(x){return !x}))return msg('Please fill in every field.',1);
+  if(k==='view'){var d=vals[0].replace(/\D/g,'');if(d.length!==10)return msg('Please enter all 10 digits.',1);return msg(billHTML(d))}
+  if(f.s)return msg(esc(f.s.replace('{0}',vals[0])));
+  msg('✔ Submitted. Your reference number is <b>'+f.r+'-'+String(Math.floor(100000+Math.random()*899999))+'</b>. Please keep it safe.')}}
+document.addEventListener('click',function(e){
+ var n=e.target.closest('[data-n]'),a=e.target.closest('[data-a]');
+ if(n){var x=n.dataset.n.split('|'),s=+x[0];R=s<0?{v:'home'}:{v:'sec',s:s,p:x[1]};show();$('nav').classList.add('x');if(document.activeElement)document.activeElement.blur()}
+ else if(a)act(a.dataset.a,a)});
+$('nav').addEventListener('pointerover',function(){this.classList.remove('x')});
+$('q').addEventListener('keydown',function(e){if(e.key==='Enter')act('search')});
+document.addEventListener('input',function(e){var t=e.target,d;if(t.id==='cardNo'){d=t.value.replace(/\D/g,'').slice(0,16);t.value=d.replace(/(.{4})/g,'$1 ').trim()}else if(t.id==='cardExp'){d=t.value.replace(/\D/g,'').slice(0,4);t.value=d.length>2?d.slice(0,2)+'/'+d.slice(2):d}else if(t.id==='cardCvv'||t.id==='otpIn'){t.value=t.value.replace(/\D/g,'')}});
+nav();show();
+</script>
+<script src="raasta.js"></script>
+<script>
+/* Saarthi ON/OFF switch (demo). Saarthi.setEnabled() shows or removes the widget at once and remembers the choice. */
+(function(){
+  var b=document.getElementById('saarthi-switch');
+  if(!b)return;
+  function paint(){var on=!!(window.Saarthi&&Saarthi.isEnabled());b.textContent='Saarthi: '+(on?'ON':'OFF');b.setAttribute('aria-pressed',on?'true':'false')}
+  b.addEventListener('click',function(){if(window.Saarthi){Saarthi.setEnabled(!Saarthi.isEnabled());paint()}});
+  paint();
+})();
+</script>
+</body>
+</html>
