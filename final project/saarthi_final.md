@@ -13,3 +13,5 @@ LINK OF MOCK TRIAL WEBSITE:- https://raasta-web.onrender.com
 VIDEO LINK :- https://drive.google.com/drive/u/0/folders/1-6PUoBqdVyNUuJvQ25BTHWkb2zK4jhKh 
 
 THIS LINK CONTAINS THE VIDEO OF HOW SAARTHI AND MOCK PRACTICE TOOL WORKS
+
+NOTE:-  You can try extension_v0.2 if any problem or error occurred
