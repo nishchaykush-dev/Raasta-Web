@@ -1,0 +1,19 @@
+{
+  "name": "safe-website-practice",
+  "version": "1.0.0",
+  "description": "Safe website practice portal with Gemini-powered adaptive guidance",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "engines": {
+    "node": ">=18.18"
+  },
+  "dependencies": {
+    "@google/genai": "^1.0.0",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.2"
+  }
+}
